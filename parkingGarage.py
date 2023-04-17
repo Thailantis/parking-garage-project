@@ -1,58 +1,73 @@
+import time
+
+
 class ParkingGarage:
-    def __init__(self, num_tickets, num_parking_spaces):
-        self.num_tickets = num_tickets
-        self.num_parking_spaces = num_parking_spaces
-        current_tickets = []
-        parking_spots = range(1, 101)
+
+    available_tickets = my_list = list(range(1, 101))
+    available_spaces = my_list = list(range(1, 101))
+    paid_tickets = []
+    occupied_spaces = []
 
     def driver(self):
-        valid_ticket = False
-        while valid_Ticket:
-            verify_ticket = input("would you like to purchase a ticket?: ")
-        if verify_ticket == "yes":
-            self.purchase_ticket
-        if valid_ticket == "no":
-            print("thank you, have a nice day!")
-            
+        home_screen = input('\n      "PAY-TO-PARK"\n(press ENTER to continue)')
+        if home_screen == "":
+            time.sleep(.5)
+            print('\nHello')
+            time.sleep(1)
+            welcome_message = input(
+                "\nIf you would like to Pay-To-Park please respond with yes or no.\nTo view parking garage info enter 'info'\n(Enter 'q' to quit anytime):\n")
+            if welcome_message.lower() == "yes":
+                time.sleep(.5)
+                self.purchase_ticket()
+            elif welcome_message.lower() == 'q':
+                time.sleep(1)
+                print('Good-bye!')
+                time.sleep(2)
+                self.driver()
+            elif welcome_message.lower () == 'info':
+              time.sleep(1)
+              print(f'\nHere are the:\n\nAvailable Tickets:{len(ParkingGarage.available_tickets)}\nPaid Tickets:{len(ParkingGarage.paid_tickets)}\nAvailable Parking Spaces:{len(ParkingGarage.available_spaces)}\nOccupied Spaces:{len(ParkingGarage.occupied_spaces)}')
+              time.sleep(6)
+              self.driver()
+            elif welcome_message.lower() == 'no':
+                time.sleep(.2)
+                print("\nUnderstood, bye-bye now!")
+                time.sleep(2)
+                self.driver()
+            else:
+                print("\nSorry,invalid entry. Please try again")
+                time.sleep(2)
+                self.driver()
 
     def purchase_ticket(self):
-        pass
+        self.paid = False
+        pay = input("\nPlease swipe your credit card and then enter 'done'")
+        if pay.lower() == 'done':
+          time.sleep(1)
+          print("\nProcessing....")
+          time.sleep(3)
+          print("\n\"PAYMENT APPROVED\"\n")
+          time.sleep(2)
+          print('Thank you, take your ticket down below.')
+          time.sleep(6)
+          self.paid = True
+          self.store_info()  
+        elif pay.lower == 'q':
+          time.sleep(2)
+          self.driver()  
+        else:
+          time.sleep(.2)
+          print("\nPlease Try Again")
+          time.sleep(2)
+          self.driver()
 
-        def take_ticket(self):
-            while True:
-                purchase_ticket = False
-            valid_ticket = input("do you have a ticket?: ")
-            if valid_ticket == "yes":
-                valid_ticket = valid_ticket.lower()
-                purchase_ticket = True
-            if purchase_ticket == True:
-                current_tickets.append(valid_ticket)
-            if valid_ticket == "no":
-                print("sorry you need to buy a ticket to proceed.")
-
-            def pay_for_parking(self):
-                valid_ticket = int(input("What is your ticket number?: "))
-                if valid_ticket in self.current_tickets:
-                    payment = input("Enter your payment amount: ")
-                    self.current_tickets[purchase_ticket]["paid"] = True
-                    print("Payment has been accepted! You have 20 minutes to leave the garage.")
-                elif current_tickets:
-                    print("Your ticket has been paid already.")
-                else:
-                    print("Sorry! the ticket number is invalid.")
-
-            def leave_garage(self):
-                valid_ticket = int(input("what is your ticket number?: "))
-                if self.current_tickets.get(ticket):
-                    if self.current_ticket[ticket]["paid"]:
-                        print("Thank you, have a nice day!")
-                        self.parking_spaces.append(self.current_tickets[ticket]["parking_space"])
-                        self.valid_ticket.append(ticket)
-                        del self.current_tickets[ticket]
-                    else:
-                        print("you did not pay that ticket because it has not been paid")
-                else:
-                    print("this is the invalid ticket number, please try again.")
-
-test = ParkingGarage(valid_ticket)
-print(test.valid_ticket)
+    def store_info(self):
+      sold_tickets = ParkingGarage.available_tickets.pop()
+      self.paid_tickets.append(sold_tickets)
+      taken_spaces = ParkingGarage.available_spaces.pop()
+      self. occupied_spaces.append(taken_spaces)
+      time.sleep(1)
+      self.driver()
+ 
+test = ParkingGarage()
+test.driver()
