@@ -1,6 +1,5 @@
 import time
 
-
 class ParkingGarage:
 
     available_tickets = my_list = list(range(1, 101))
